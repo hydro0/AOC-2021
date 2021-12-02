@@ -18,39 +18,25 @@ import java.nio.file.Path;
 import java.util.List;
 import static java.util.stream.Collectors.toList;
 
+import day2.Solution;
+
 class Main {
+
+  private static final Solution SOLUTION = new Solution();
+
   public static void main(String[] args) {
     /*
     Place your question data into the data.txt file.
     You may need to parse the data!
     */
-    Path filePath = Paths.get("data.txt");
+    Path filePath = Paths.get(SOLUTION.PATH + "/data.txt");
     Charset charset = StandardCharsets.UTF_8;
     List<String> dataLines;
     try {
       dataLines = Files.readAllLines(filePath, charset);
-      var numbers = dataLines.stream().map(it -> Integer.parseInt(it)).collect(toList());
-      System.out.println(solve(numbers));
+      SOLUTION.second(dataLines);
     } catch (IOException ex) {
             System.out.format("I/O error: %s%n", ex);
     }
-    long start = System.nanoTime();
-
-
-
-    // Keep this line at the end of your code
-    long end = System.nanoTime();
-    long elapsedTime = end - start;
-    System.out.format("Elapsed time: %dns%n", elapsedTime);
-  }
-
-  static int solve(List<Integer> nums) {
-    int res = 0;
-    for (int i = 1; i < nums.size(); i++) {
-      if (nums.get(i) - nums.get(i - 1) > 0) {
-        res++;
-      }
-    }
-    return res;
   }
 }
