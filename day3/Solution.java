@@ -55,10 +55,10 @@ public class Solution {
 
   private static String find(List<String> lines, boolean eq) {
     for (int bit = 0; bit < 12; bit++) {
-      String gamma = buildGamma(lines);
+      char bits = bitAt(lines, bit);
       List<String> left = new ArrayList<>();
       for (String line : lines) {
-        if ((line.charAt(bit) == gamma.charAt(bit)) == eq) {
+        if ((line.charAt(bit) == bits) == eq) {
           left.add(line);
         }
       }
@@ -73,25 +73,13 @@ public class Solution {
     throw new RuntimeException("Impossible!");
   }
 
-  private static String buildGamma(List<String> lines) {
-    int[] bits = new int[12];
-    int total = lines.size();
+  private static char bitAt(List<String> lines, int bit) {
+    int bits = 0;
     
     for (String line : lines) {
-      char[] l = line.toCharArray();
-      for (int i = 0; i < 12; i++) {
-        bits[i] += (l[i] - '0');
-      }
+      bits += (line.charAt(bit) - '0');
     }
 
-    String gamma = "";
-    for (int i = 0; i < 12; i++) {
-      if (bits[i] * 2 >= total) {
-        gamma += "1";
-      } else {
-        gamma += "0";
-      }
-    }
-    return gamma;
+    return bits * 2 >= lines.size() ? '1' : '0';
   }
 }
