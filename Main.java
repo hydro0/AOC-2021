@@ -16,9 +16,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
 import java.util.List;
-import static java.util.stream.Collectors.toList;
 
-import day4.Solution;
+import day5.Solution;
 
 class Main {
 
